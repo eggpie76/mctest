@@ -1,4 +1,4 @@
-const mysql = require('mysql2');
+//const mysql = require('mysql2');
 
 
 const http = require("http");
@@ -7,7 +7,7 @@ const http = require("http");
 const server = http.createServer((req, res) => {
   // HTTP 응답 설정
   res.writeHead(200, { "Content-Type": "application/json" });
-  res.end(JSON.stringify("aabc"));
+  res.end(JSON.stringify("aabdc"));
 });
 
 // 서버 실행 (Cafe24에서 제공하는 포트 사용)
