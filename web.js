@@ -1,10 +1,13 @@
+
+
+
 const http = require("http");
 
 // HTTP 서버 생성
 const server = http.createServer((req, res) => {
   // HTTP 응답 설정
   res.writeHead(200, { "Content-Type": "application/json" });
-  res.end(JSON.stringify("abc"));
+  res.end(JSON.stringify("klo"));
 });
 
 // 서버 실행 (Cafe24에서 제공하는 포트 사용)
