@@ -8,13 +8,27 @@ const connection = mysql.createConnection({
   database: 'martcalctest' // DB 이름
 });
 
+var text = "test ";
+
 // 연결 시도
 connection.connect((err) => {
   if (err) {
+    text += "1.err "+err.stack;
     console.error('Database connection failed: ' + err.stack);
     return;
   }
   console.log('Connected to database.');
+});
+
+// 쿼리 실행 예제
+connection.query('SELECT 1 + 1 AS solution', (err, results) => {
+  if (err) {
+    text += " 2. err "+err.message;
+    console.error('쿼리 실행 실패:', err.message);
+    return;
+  }
+  text += " 2. 쿼리 결과"+results[0].solution;
+  console.log('쿼리 결과 ', results[0].solution);
 });
 
 // 연결 종료
@@ -25,7 +39,7 @@ const http = require("http");
 
 const server = http.createServer((req, res) => {
   res.writeHead(200, { "Content-Type": "application/json" });
-  res.end(JSON.stringify("Hello from Node.js server! noahlee"));
+  res.end(JSON.stringify(text));
 });
 
 const PORT = process.env.PORT || 8001; // Cafe24에서 제공하는 포트 사용
