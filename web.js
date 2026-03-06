@@ -8,7 +8,7 @@ const connection = mysql.createConnection({
   database: 'martcalctest' // DB 이름
 });
 
-var text = "-";
+var text = " - ";
 
 // 연결 시도
 connection.connect((err) => {
