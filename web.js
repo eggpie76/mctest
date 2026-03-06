@@ -4,11 +4,11 @@ const mysql = require('mysql2');
 const connection = mysql.createConnection({
   host: '10.0.0.1', // Cafe24에서 제공하는 DB 호스트
   user: 'martcalctest', // DB 사용자 이름
-  password: 'backery34!', // DB 비밀번호
+  password: 'backery76!', // DB 비밀번호
   database: 'martcalctest' // DB 이름
 });
 
-var text = "";
+var text = "-";
 
 // 연결 시도
 connection.connect((err) => {
