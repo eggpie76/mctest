@@ -8,7 +8,7 @@ const connection = mysql.createConnection({
   database: 'martcalctest' // DB 이름
 });
 
-var text = "test ";
+var text = "";
 
 // 연결 시도
 connection.connect((err) => {
@@ -23,11 +23,10 @@ connection.connect((err) => {
 // 쿼리 실행 예제
 connection.query('SELECT 1 + 1 AS solution', (err, results) => {
   if (err) {
-    text += " 2. err "+err.message;
     console.error('쿼리 실행 실패:', err.message);
     return;
   }
-  text += " 2. 쿼리 결과"+results[0].solution;
+  text += "\n쿼리 결과"+results[0].solution;
   console.log('쿼리 결과 ', results[0].solution);
 });
 
