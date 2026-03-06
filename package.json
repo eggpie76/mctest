@@ -1,3 +1,10 @@
-"scripts": {
-  "start": "node web.js"
+{
+  "name": "my-app",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "mysql2": "^2.3.3"
+  }
 }
