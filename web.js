@@ -23,7 +23,10 @@ connection.connect((err) => {
 //03.10
 //var sqlquery = 'CREATE TABLE goods (barcode TEXT, name TEXT, price TEXT, img TEXT, cdc TEXT, sdcs TEXT, fdcs TEXT, url TEXT, co TEXT, cdcs TEXT)';
 
-var sqlquery = "INSERT INTO goods (barcode, name, price, img, cdc, sdcs, fdcs, url, co, cdcs) VALUES ('8803733376983', '락앤락 프리저핏 2.2L', '8200', 'mc_gc_foodcontainer', 'N', 'ONEADD|SINGLE|SCALED|N,0|0,0|1+1,1+1,1+1', 'N#N', '', '락앤락', 'N#N')";
+//var sqlquery = "INSERT INTO goods (barcode, name, price, img, cdc, sdcs, fdcs, url, co, cdcs) VALUES ('8803733376983', '락앤락 프리저핏 2.2L', '8200', 'mc_gc_foodcontainer', 'N', 'ONEADD|SINGLE|SCALED|N,0|0,0|1+1,1+1,1+1', 'N#N', '', '락앤락', 'N#N')";
+
+var sqlquery = "SELECT * FROM goods";
+
 
 
 connection.query(sqlquery, (err, results) => {
