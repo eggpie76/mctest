@@ -21,15 +21,19 @@ connection.connect((err) => {
 });
 
 //03.10
-var sqlquery = 'CREATE TABLE goods (barcode TEXT, name TEXT, price TEXT, img TEXT, cdc TEXT, sdcs TEXT, fdcs TEXT, url TEXT, co TEXT, cdcs TEXT)';
+//var sqlquery = 'CREATE TABLE goods (barcode TEXT, name TEXT, price TEXT, img TEXT, cdc TEXT, sdcs TEXT, fdcs TEXT, url TEXT, co TEXT, cdcs TEXT)';
+
+var sqlquery = 'INSERT INTO 테이블명 (barcode, name, price, img, cdc, sdcs, fdcs, url, co, cdcs) VALUES ('값1', '값2','8803733376983', '락앤락 프리저핏 2.2L', '8200', 'mc_gc_foodcontainer', 'N', 'ONEADD|SINGLE|SCALED|N,0|0,0|1+1,1+1,1+1', 'N#N', '', '락앤락', 'N#N') ';
+
+
 connection.query(sqlquery, (err, results) => {
   if (err) {
     console.error('쿼리 실행 실패:', err.message);
     return;
   }
-  text += "\n테이블 생성됨"; //+results[0].solution;
-  console.log('테이블 생성됨');
-  //console.log('쿼리 결과 ', results[0].solution);
+  text += "\n Insert : "+results[0].solution;
+  //console.log('CREATE table');
+  console.log('Insert ', results[0].solution);
 });
 //
 
