@@ -18,49 +18,36 @@ connection.connect((err) => {
   console.log('데이터베이스에 연결되었습니다.');
 });
 
-// 기존 테이블 삭제 쿼리
-const dropTableQuery = "DROP TABLE IF EXISTS goods";
+// 삽입할 데이터 배열
+const data = [
+  ['8803733376983', '락앤락 프리저핏 2.2L', '8200', 'mc_gc_foodcontainer', 'mc_gc_foodcontainer', 'N', 'ONEADD|SINGLE|SCALED|N,0|0,0|1+1,1+1,1+1', 'N#N', '락앤락', 'N#N'],
+  ['8803733362320', '락앤락 프리저핏 3.2L', '9500', 'mc_gc_foodcontainer', 'mc_gc_foodcontainer', 'N', 'ONEADD|SINGLE|SCALED|N,0|0,0|1+1,1+1,1+1', 'N#N', '락앤락', 'N#N'],
+  ['8801094000349', '제주감귤 1.5L', '4500', 'mc_fd_', 'mc_fd_juice', 'N', 'ONEADD|SINGLE|SCALED|N,0|0,0|1+1,1+1,1+1', 'N#N', '미닛메이드', 'N#N']
+];
 
-// 새 테이블 생성 쿼리
-const createTableQuery = `
-  CREATE TABLE goods (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    barcode VARCHAR(50),
-    name VARCHAR(255),
-    price VARCHAR(50),
-    img VARCHAR(255),
-    cdc VARCHAR(50),
-    sdcs VARCHAR(50),
-    fdcs VARCHAR(50),
-    url TEXT,
-    co VARCHAR(50),
-    cdcs VARCHAR(50)
-  )
+// SQL 쿼리 작성
+const sqlquery = `
+  INSERT INTO goods (barcode, name, price, img, cdc, sdcs, fdcs, url, co, cdcs)
+  VALUES ?
 `;
 
-// 테이블 삭제
-connection.query(dropTableQuery, (err, results) => {
+// 여러 개의 데이터 삽입
+connection.query(sqlquery, [data], (err, results) => {
   if (err) {
-    console.error('테이블 삭제 실패:', err.message);
+    console.error('쿼리 실행 실패:', err.message);
     return;
   }
-  console.log('기존 테이블이 삭제되었습니다.');
-
-  // 새 테이블 생성
-  connection.query(createTableQuery, (err, results) => {
-    if (err) {
-      console.error('테이블 생성 실패:', err.message);
-      return;
-    }
-    console.log('새 테이블이 성공적으로 생성되었습니다.');
-    connection.end(); // 작업 완료 후 데이터베이스 연결 종료
-  });
+  console.log('데이터가 성공적으로 삽입되었습니다.');
+  console.log('삽입된 행 수:', results.affectedRows);
 });
+
+// 연결 종료
+connection.end();
 
 // HTTP 서버 생성
 const server = http.createServer((req, res) => {
   res.writeHead(200, { "Content-Type": "text/plain; charset=utf-8" });
-  res.end("테이블 삭제 및 생성 작업이 완료되었습니다.");
+  res.end("데이터가 성공적으로 삽입되었습니다.");
 });
 
 const PORT = process.env.PORT || 8001; // Cafe24에서 제공하는 포트 사용
