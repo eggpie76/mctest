@@ -20,15 +20,28 @@ connection.connect((err) => {
   console.log('Connected to database.');
 });
 
-// 쿼리 실행 예제
-connection.query('SELECT 1 + 1 AS solution', (err, results) => {
+//03.10
+var sqlquery = 'CREATE TABLE goods (barcode TEXT, name TEXT, price TEXT, img TEXT, cdc TEXT, sdcs TEXT, fdcs TEXT, url TEXT, co TEXT, cdcs TEXT)';
+connection.query(sqlquery, (err, results) => {
   if (err) {
     console.error('쿼리 실행 실패:', err.message);
     return;
   }
-  text += "\n쿼리 결과"+results[0].solution;
-  console.log('쿼리 결과 ', results[0].solution);
+  text += "\n테이블 생성됨"; //+results[0].solution;
+  console.log('테이블 생성됨');
+  //console.log('쿼리 결과 ', results[0].solution);
 });
+//
+
+// 쿼리 실행 예제
+//connection.query('SELECT 1 + 1 AS solution', (err, results) => {
+//  if (err) {
+//    console.error('쿼리 실행 실패:', err.message);
+//    return;
+//  }
+//  text += "\n쿼리 결과"+results[0].solution;
+//  console.log('쿼리 결과 ', results[0].solution);
+//});
 
 // 연결 종료
 connection.end();
