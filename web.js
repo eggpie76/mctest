@@ -1,47 +1,17 @@
 const express = require("express");
-const mysql = require("mysql2");
-
 const app = express();
-const port = process.env.PORT || 8001;
 
-// MySQL 연결 설정
-const db = mysql.createConnection({
-  host: '10.0.0.1', // Cafe24에서 제공하는 DB 호스트
-  user: 'martcalctest', // DB 사용자 이름
-  password: 'backery12!', // DB 비밀번호
-  database: 'martcalctest' // DB 이름
-});
+// 포트 설정
+const PORT = process.env.PORT || 8001;
 
-db.connect((err) => {
-    if (err) {
-        console.error("Database connection failed:", err);
-        return;
-    }
-    console.log("Connected to the database.");
-});
-
-// 바코드로 제품 정보 검색 API
-app.get("/good/:barcode", (req, res) => {
-    const barcode = req.params.barcode;
-
-    const query = "SELECT * FROM goods WHERE barcode = ?";
-    db.query(query, [barcode], (err, results) => {
-        if (err) {
-            console.error("Error executing query:", err);
-            res.status(500).json({ error: "Internal Server Error" });
-            return;
-        }
-
-        if (results.length === 0) {
-            res.status(404).json({ error: "Product not found" });
-            return;
-        }
-
-        res.json(results[0]);
-    });
+// GET 요청 처리
+app.get("/hello", (req, res) => {
+    const name = req.query.name || "Guest"; // 쿼리 스트링에서 이름 가져오기
+    const message = `Hello, ${name}!`;
+    res.json({ message });
 });
 
 // 서버 시작
-app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
 });
