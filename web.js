@@ -1,6 +1,7 @@
+const express = require("express");
 const http = require("http");
 
-var text = "hi";
+var text = "express test 01";
 const server = http.createServer((req, res) => {
   res.writeHead(200, { "Content-Type": "application/json" });
   text += ", ok";
