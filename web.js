@@ -1,7 +1,8 @@
 const express = require("express");
 const http = require("http");
 
-var text = "express test 02: ";
+var text = "express test 03: ";
+const app = express();
 
 // 바코드로 제품 정보 검색 API
 app.get("/good/:barcode", (req, res) => {
